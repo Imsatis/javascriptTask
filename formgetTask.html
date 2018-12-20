@@ -7,161 +7,124 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>Document</title>
-    <style>
-        ul{
-            list-style-type: none;
-        }
-        li{
-            margin:10px;
-        }
-        .feild{
-            border:2px solid red;
-        }
-        h1{
-            border: 2px solid red;
-        }
-        p{
-            margin:20px 0 10px 0;
-            border: 2px solid green;
-        }
-        input{
-            margin:20px 0 10px 0;
-            #border: 2px solid yellow;
-        }
-    </style>
+<style>
+img{
+    width:20px;
+    height:20px;
+    margin-top:-100px;
+    margin-left:90%;
+}
+ul{
+    list-style-type: none;
+    
+}
+
+</style>
+
 </head>
 
 <body>
 
     <div class='container'>
-        <div class='row'>
-            <div class='col-md-2'>
-              <ul>
-                <li><button id='h1' onclick="head1(this)"> Heading </button></li>
-                <li><button id='p' onclick="para1()"> Paragraph </button></li>
-                <li><button id='in' onclick="input1()"> Input </button></li>
-              <ul>
+        <div class="row">
+            <div class="col-md-2">
+                <ul class='lists'>
+                    <li id='heading'><button>Heading</button></li>
+                    <li id='paragraph'><button>Paragraph</button></li>
+                    <li id='inputFeild'><button>Input</button></li>
+                </ul>
             </div>
-            <div class='col-md-10'>
-                <div id='feild'>
-                    
-               </div>
+
+            <div class="col-md-10">
+                <ul id='items'>
+
+                </ul>
             </div>
         </div>
     </div>
+    <script>
 
-<script>
-i=1;
-//  function head1(element) {
-//    let div = document.createElement("div");
-//    div.setAttribute('id',i);
-//    let heading = document.createElement("h1");
-//    let text = document.createTextNode("Heading"+i); 
-   
-//    heading.appendChild(text);
-//    div.appendChild(heading);
-//    parent = document.getElementById("feild");
-//    parent.appendChild(div);
-//    let btn = document.createElement("button")
-//    btn.setAttribute('onclick',"remove1("+i+")"); 
-//    //btn.onclick = function(){remove(i)};
-//    //console.log(btn)
-//    //console.log(btn.onlick);
-   
-//    i++;
-//    let deletebtn = document.createTextNode("Delete");
-   
-//    btn.appendChild(deletebtn)
-//    //parent.appendChild(btn);
-//    div.appendChild(btn); 
-// } 
-
-function head1(element) {
-
-    create('h1',idGenrator(),'Heading'+i,'feild');
-    i++;
-}
-
-function para1() {
-    create('p',idGenrator(),'Paragraph','feild');
-    //i++;
-}
-
-function input1() {
-    create('input',idGenrator(),'Paragraph','feild');
-    //i++;
-}
-
-  function idGenrator() {
-    let uniqId = new Date;
-    return Math.floor(Math.random()*Number(uniqId.getMilliseconds()));
-    //console.log(x); 
-  }
-
-  function remove1(element) {
-     console.log('hellow')
-    //let id = element.id;
-     child = document.getElementById(element);
-     parent = document.getElementById("feild");
-     console.log(child)
-     parent.removeChild(child);
-     //parent.removeChild(child);
-    //  var x = document.querySelectorAll("#element.id"); 
-    //  console.log(x);
-  }
+        (function () {
 
 
-  function create(element,id,inner,parent) {
-      
-      let div = document.createElement('div'); //For putting all the Element
-      div.setAttribute('id',id); //Setting Atrribute Example Id=value 
-      div.setAttribute('class','back');
+            let H1 = document.getElementById('heading');
+            H1.addEventListener('click', function () { create(this); })
 
-      let elem = document.createElement(element); //Creating Element 
-      let innerText = document.createTextNode(inner); //InnerHTML For Element
-      elem.appendChild(innerText); //putting innertext into the Element
+            let P = document.getElementById('paragraph');
+            P.addEventListener('click', function () { create(this); })
 
-      let button = document.createElement('button'); //Button for Delete
-      button.setAttribute('onclick',"remove1("+id+")"); //
-      let btnText = document.createTextNode('Delete'); //Innertext for a button
-      button.appendChild(btnText); //Putting innertext into the element
-      
-      div.appendChild(elem); //putting Element in Div
-      div.appendChild(button); //putting Button Element in Div
-      let parentdiv = document.getElementById(parent); //selecting the parent Element
-      parentdiv.appendChild(div); //putting the div into Parent element
+            let input = document.getElementById('inputFeild');
+            input.addEventListener('click', function () { create(this); });
 
-  }
+            let count = 1;
+
+            function create(clickId) {
+                console.log(clickId)
+                let innertext = '';
+                if (clickId.id == 'undefined') {
+                    return null;
+                }
+
+                if (clickId.id == 'heading') {
+
+                    innertext = '<h1>Heading' + count + '</h1>';
+
+                }
+                if (clickId.id == 'paragraph') {
+
+                    innertext = '<h1>Paragraph' + count + '</h1>';
+
+                }
+                if (clickId.id == 'inputFeild') {
+
+                    innertext = '<input type="text" placeholder="name"/>';
+
+                }
+                count++;
+                CreateElement(innertext, idGenrator());
+
+            }
 
 
-</script>
+            
 
+            function CreateElement(innertext, id) {
+
+                let list = document.createElement('li'); //creating li for items
+                list.setAttribute('id', id); //setting id Attribute for identify list 
+                console.log(innertext)
+                list.innerHTML = innertext;
+
+                let image = document.createElement('img'); //adding image to the list for deleting list item  
+                image.setAttribute('src', 'delete.jpg'); //setting attribute
+                //let callback = function() { remove1(id) };
+                console.log(rem)
+                image.setAttribute('onclick',console.log(rem));
+                
+                list.appendChild(image); //putting image element inside list
+
+
+                let ul = document.getElementById('items');
+                ul.appendChild(list)
+
+            }
+
+            function rem() {
+             console.log('hellow')
+           }
+
+    
+            function idGenrator() {
+
+                let uniqId = new Date;
+                return Math.floor(Math.random() * Number(uniqId.getMilliseconds()));
+                //console.log(x); 
+            }
+
+        })();
+        
+
+    </script>
 </body>
 
 </html>
-
-<!-- function createElement(element, attribute, inner) {
-    if (typeof(element) === "undefined") {
-      return false;
-    }
-    if (typeof(inner) === "undefined") {
-      inner = "";
-    }
-    var el = document.createElement(element);
-    if (typeof(attribute) === 'object') {
-      for (var key in attribute) {
-        el.setAttribute(key, attribute[key]);
-      }
-    }
-    if (!Array.isArray(inner)) {
-      inner = [inner];
-    }
-    for (var k = 0; k < inner.length; k++) {
-      if (inner[k].tagName) {
-        el.appendChild(inner[k]);
-      } else {
-        el.appendChild(document.createTextNode(inner[k]));
-      }
-    }
-    return el;
-  } -->
