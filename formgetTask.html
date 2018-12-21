@@ -8,24 +8,29 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>Document</title>
     <style>
-        ul{
+        ul {
             list-style-type: none;
         }
-        li{
-            margin:10px;
+
+        li {
+            margin: 10px;
         }
-        .feild{
-            border:2px solid red;
-        }
-        h1{
+
+        .feild {
             border: 2px solid red;
         }
-        p{
-            margin:20px 0 10px 0;
-            border: 2px solid green;
+
+        h1 {
+            border: 2px solid black;
         }
-        input{
-            margin:20px 0 10px 0;
+
+        p {
+            margin: 20px 0 10px 0;
+            border: 2px solid black;
+        }
+
+        input {
+            margin: 20px 0 10px 0;
             #border: 2px solid yellow;
         }
     </style>
@@ -36,105 +41,114 @@
     <div class='container'>
         <div class='row'>
             <div class='col-md-2'>
-              <ul>
-                <li><button id='h1' onclick="head1(this)"> Heading </button></li>
-                <li><button id='p' onclick="para1()"> Paragraph </button></li>
-                <li><button id='in' onclick="input1()"> Input </button></li>
-              <ul>
+                <ul>
+                    <li><button id='h1' onclick="element(this)"> Heading </button></li>
+                    <li><button id='paragraph' onclick="element(this)"> Paragraph </button></li>
+                    <li><button id='input' onclick="element(this)"> Input </button></li>
+                    <ul>
             </div>
             <div class='col-md-10'>
                 <div id='feild'>
-                    
-               </div>
+
+                </div>
             </div>
         </div>
     </div>
 
-<script>
-i=1;
-//  function head1(element) {
-//    let div = document.createElement("div");
-//    div.setAttribute('id',i);
-//    let heading = document.createElement("h1");
-//    let text = document.createTextNode("Heading"+i); 
-   
-//    heading.appendChild(text);
-//    div.appendChild(heading);
-//    parent = document.getElementById("feild");
-//    parent.appendChild(div);
-//    let btn = document.createElement("button")
-//    btn.setAttribute('onclick',"remove1("+i+")"); 
-//    //btn.onclick = function(){remove(i)};
-//    //console.log(btn)
-//    //console.log(btn.onlick);
-   
-//    i++;
-//    let deletebtn = document.createTextNode("Delete");
-   
-//    btn.appendChild(deletebtn)
-//    //parent.appendChild(btn);
-//    div.appendChild(btn); 
-// } 
+    <script>
+        
+        //  function head1(element) {
+        //    let div = document.createElement("div");
+        //    div.setAttribute('id',i);
+        //    let heading = document.createElement("h1");
+        //    let text = document.createTextNode("Heading"+i); 
 
-function head1(element) {
+        //    heading.appendChild(text);
+        //    div.appendChild(heading);
+        //    parent = document.getElementById("feild");
+        //    parent.appendChild(div);
+        //    let btn = document.createElement("button")
+        //    btn.setAttribute('onclick',"remove1("+i+")"); 
+        //    //btn.onclick = function(){remove(i)};
+        //    //console.log(btn)
+        //    //console.log(btn.onlick);
 
-    create('h1',idGenrator(),'Heading'+i,'feild');
-    i++;
-}
+        //    i++;
+        //    let deletebtn = document.createTextNode("Delete");
 
-function para1() {
-    create('p',idGenrator(),'Paragraph','feild');
-    //i++;
-}
+        //    btn.appendChild(deletebtn)
+        //    //parent.appendChild(btn);
+        //    div.appendChild(btn); 
+        // } 
 
-function input1() {
-    create('input',idGenrator(),'Paragraph','feild');
-    //i++;
-}
+        count = 1;
+        function element(click) { 
 
-  function idGenrator() {
-    let uniqId = new Date;
-    return Math.floor(Math.random()*Number(uniqId.getMilliseconds()));
-    //console.log(x); 
-  }
+            if(click.id == 'h1') {
 
-  function remove1(element) {
-     console.log('hellow')
-    //let id = element.id;
-     child = document.getElementById(element);
-     parent = document.getElementById("feild");
-     console.log(child)
-     parent.removeChild(child);
-     //parent.removeChild(child);
-    //  var x = document.querySelectorAll("#element.id"); 
-    //  console.log(x);
-  }
+            create('h1', idGenrator(), 'Heading' + count, 'feild');
+            count++;
+            
+            }
+
+            if(click.id == 'paragraph') {
+
+                create('p', idGenrator(), 'Paragraph', 'feild');
+
+            }
+
+            if(click.id == 'input') {
+
+                create('input', idGenrator(), 'Paragraph', 'feild');
+
+            }
+        }
 
 
-  function create(element,id,inner,parent) {
-      
-      let div = document.createElement('div'); //For putting all the Element
-      div.setAttribute('id',id); //Setting Atrribute Example Id=value 
-      div.setAttribute('class','back');
+        function idGenrator() {
 
-      let elem = document.createElement(element); //Creating Element 
-      let innerText = document.createTextNode(inner); //InnerHTML For Element
-      elem.appendChild(innerText); //putting innertext into the Element
+            let uniqId = new Date;
+            console.log(uniqId.getMilliseconds())
+            return Math.floor(Math.random() * Number(uniqId.getMilliseconds()));
 
-      let button = document.createElement('button'); //Button for Delete
-      button.setAttribute('onclick',"remove1("+id+")"); //
-      let btnText = document.createTextNode('Delete'); //Innertext for a button
-      button.appendChild(btnText); //Putting innertext into the element
-      
-      div.appendChild(elem); //putting Element in Div
-      div.appendChild(button); //putting Button Element in Div
-      let parentdiv = document.getElementById(parent); //selecting the parent Element
-      parentdiv.appendChild(div); //putting the div into Parent element
+        }
 
-  }
+        function remove1(id) {
+
+            child = document.getElementById(id);
+            parent = document.getElementById("feild");
+            //console.log(child)
+            parent.removeChild(child);
+            //parent.removeChild(child);
+            //  var x = document.querySelectorAll("#element.id"); 
+            //  console.log(x);
+        }
 
 
-</script>
+        function create(element, id, inner, parent) {
+
+            let div = document.createElement('div');  //For putting all the Element
+            div.setAttribute('id', id);  //Setting Atrribute Example Id=value 
+            div.setAttribute('class', 'back');
+
+            let elem = document.createElement(element);  //Creating Element 
+            let innerText = document.createTextNode(inner);  //InnerHTML For Element
+            elem.appendChild(innerText);  //putting innertext into the Element
+
+            let button = document.createElement('button');  //Button for Delete
+            button.setAttribute('onclick', "remove1(" + id + ")"); //
+            let btnText = document.createTextNode('Delete');  //Innertext for a button
+            button.appendChild(btnText);  //Putting innertext into the element
+
+            div.appendChild(elem); //putting Element in Div
+            div.appendChild(button);  //putting Button Element in Div
+            let parentdiv = document.getElementById(parent);  //selecting the parent Element
+            parentdiv.appendChild(div);  //putting the div into Parent element
+
+        }
+
+
+    </script>
 
 </body>
 

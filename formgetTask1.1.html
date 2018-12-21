@@ -11,12 +11,16 @@
 img{
     width:20px;
     height:20px;
-    margin-top:-100px;
+    margin-top:-60px;
     margin-left:90%;
 }
 ul{
     list-style-type: none;
+    margin-top: 25px;
     
+}
+li{
+    #border: 2px solid red;
 }
 
 </style>
@@ -24,6 +28,13 @@ ul{
 </head>
 
 <body>
+    <!-- <div id='test'>
+        <h1 id='demo'>demo</hi>
+            <h1 id='demo'>demo1</hi>
+                <h1 id='demo'>demo2</hi>
+                    <h1 id='demo'>demo3</hi>
+                        <h1 id='demo'>demo4</hi>
+        <div> -->
 
     <div class='container'>
         <div class="row">
@@ -44,7 +55,7 @@ ul{
     </div>
     <script>
 
-        (function () {
+       // (function () {
 
 
             let H1 = document.getElementById('heading');
@@ -98,8 +109,8 @@ ul{
                 let image = document.createElement('img'); //adding image to the list for deleting list item  
                 image.setAttribute('src', 'delete.jpg'); //setting attribute
                 //let callback = function() { remove1(id) };
-                console.log(rem)
-                image.setAttribute('onclick',console.log(rem));
+                //console.log(rem)
+                image.setAttribute('onclick',"remove("+id+")");
                 
                 list.appendChild(image); //putting image element inside list
 
@@ -109,8 +120,11 @@ ul{
 
             }
 
-            function rem() {
-             console.log('hellow')
+            function remove(id) {
+             //console.log(document.getElementById(id).parentNode.removeChild(document.getElementById(id)))
+             //document.getElementById(id).parentNode.removeChild(id)
+             console.log(id)
+             document.getElementById(id).parentNode.removeChild(document.getElementById(id))
            }
 
     
@@ -121,10 +135,10 @@ ul{
                 //console.log(x); 
             }
 
-        })();
+       // })();
 
-        create(2)
-        
+        // var demo = document.querySelectorAll('div#test #demo') 
+        // console.log(demo)
 
     </script>
 </body>
