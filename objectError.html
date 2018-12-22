@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="checking"><div><div id='demo'>demo div</div></div></div>
+    <div>
+        <button id="addHadding">Heading</button>
+        <button id="addParagraph">Paragraph</button>
+        <button id="addInsert">Mobile Number</button>
+        <button id="addSubmitid">Submit</button>
+
+    </div><br><br>
+    <div>
+        <form action="#" method="POST">
+            <div id="heading"></div><br><br>
+
+            <div id="submit"></div>
+        </form>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script>
+        var unicId = 1;
+        //var removeTraget = document.getElementById('heading');
+        $(document).ready(function () {
+
+            // $('#addHadding').click(function() {
+            //     $('#heading').append(
+            //     '<div id = div' + (unicId++) + '><input " type="text"  name= "haddingName" value="Enter Hadding Heare"/><button type="button"  id = ' + (unicId++) + '>delet</button></div><br>');
+
+            // });
+            // $('#addParagraph').click(function(){
+            //     $('#heading').append(
+            //     '<div id = div' + (unicId++) + '><textarea rows="4" cols="50" name="comment" form="usrform">Enter Paragraph here...</textarea><button type="button" id =' + (unicId++) + '>delet</button></div><br>');
+
+
+            // });
+            $('#addInsert').click(function () {
+                $('#heading').append(
+                    '<div id = div' + unicId + '><input type="text" name= "haddingName" value="Number"/><button type="button" id = '
+                    + unicId + ' onclick="remo(div' + unicId + ')">delet</button></div><br>'); unicId++;
+            });
+
+            $('#addHadding').click(function () {
+                document.getElementById(heading).appendChild(
+                    '<div id = div' + unicId + '>hellow<button type="button"  id = ' + unicId + ' onclick="remo(div'+unicId+')">delet</button></div>');
+                    unicId++;
+            });
+
+            $('#addInsert').click(function () {
+                $('#test').append(
+                    '<p id="check"><button onclick = "remo()">click</button></p>')
+            });
+
+            // $('#addSubmitid').click(function(){
+            //     $('#heading').append(
+            //     '<input type="submit" name= "submit" value="submit"/>');
+            // });
+            // removeTraget.addEventListener('click', function(e){
+            //     //console.log(e.target.parentElement.id);
+            //     if(e.target.tagName == 'BUTTON'){
+            //       //  console.log(e.target.id);
+            //         // e.target.parentElement.remove();
+            //     }
+            // });
+        });
+
+   
+        remo(checking)
+
+        function remo(id) {
+
+            console.log(id)
+            //id.remove();
+
+        } 
+    </script>
+</body>
+
+</html>
