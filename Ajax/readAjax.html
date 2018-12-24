@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+     <h2>Read From database</h2>
+
+     <ul id='list'>
+
+
+     </ul>
+     <div id='chk'></div>
+
+     <script>
+
+         getdata("read.php?run=getName",showName);
+       
+     
+     function read(id) {
+        
+        getdata("read.php?run=getdetail&id="+id,showDetail,id);     
+        
+
+     }
+
+     function showName(xhttp) {
+        
+        list.innerHTML = xhttp.responseText;
+     }
+
+     function showDetail(xhttp,id) {
+       document.getElementById("user"+id).innerHTML = xhttp.responseText;
+       
+     }
+     
+
+     function getdata(url,callback,id) {
+           
+     var xhttp = new XMLHttpRequest();
+
+     xhttp.onreadystatechange = function() {
+       
+          if(this.readyState == 4 && this.status == 200) {
+
+               callback(this,id);
+          }
+
+     }; 
+
+     xhttp.open("GET",url,true);
+     xhttp.send();
+
+   }
+
+     </script>
+
+
+</body>
+</html>
