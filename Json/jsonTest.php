@@ -30,11 +30,16 @@ if(isset($_REQUEST['submit'])) {
 
     $result = $conn->query($test);
 
+}
 
-    if(isset($_POST['xyz'])) {
-        echo "hellow";
-    }
+if(isset($_REQUEST['search'])) {
+    $search = $_REQUEST['search'];
 
+    $query = "SELECT * FROM validjson where JSON_VALUE(json,'$.name') = 'Jhon'";
+    $conn->query($query);//ALTER TABLE validjson add test varchar(50) AS id
+    //select JSON_VALUE(json,'$.name') from validjson
+    //SELECT * FROM validjson where 'Jhon' = JSON_VALUE(json,'$.name')
+    // /ALTER TABLE validjson DROP COLUMN test
 }
 
 
@@ -66,8 +71,8 @@ if(isset($_REQUEST['submit'])) {
 
 
     <form action="" method='post'>
-    Search:<input type="text" name='xyz'>
-    <input type="submit" name='test'>   
+    Search:<input type="text" name='search'>
+    <input type="submit" name=''>   
     </form>
     </div>
 </body>

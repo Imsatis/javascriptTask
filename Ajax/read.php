@@ -32,7 +32,7 @@ if($result->num_rows > 0) {$test=[];
        'name'=>'test',
        'username'=>'_test',
        'email'=>'test@gmail.com'
-   );
+   );//PHP ASSOCIATIVE ARRAY == JAVASCRIPT OBJECT  
    print_r($test);
  }
 }
