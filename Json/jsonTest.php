@@ -13,13 +13,26 @@ if($conn->connect_error){
 
 if(isset($_REQUEST['submit'])) {
 
+    // $jsonData = json_encode(array (
+    //     'name'=>$_REQUEST['name'],
+    //     'username'=>$_REQUEST['username'],
+    //     'password'=>$_REQUEST['password'],
+    //     'email'=>$_REQUEST['email']
+    // ));
+
+    
+    // echo "<pre>";
+    // print_r($jsonData);
+
+
     $jsonData = json_encode(array (
-        'name'=>$_REQUEST['name'],
-        'username'=>$_REQUEST['username'],
-        'password'=>$_REQUEST['password'],
-        'email'=>$_REQUEST['email']
-    ));
-    echo "<pre>";
+            'name'=>array($_REQUEST['name'],'sharma','jack','Jhon'),
+            'username'=>$_REQUEST['username'],
+            'password'=>$_REQUEST['password'],
+            'email'=>$_REQUEST['email']
+        ));
+    
+          echo "<pre>";
     print_r($jsonData);
     
 
@@ -33,13 +46,44 @@ if(isset($_REQUEST['submit'])) {
 }
 
 if(isset($_REQUEST['search'])) {
+    
     $search = $_REQUEST['search'];
 
-    $query = "SELECT * FROM validjson where JSON_VALUE(json,'$.name') = 'Jhon'";
-    $conn->query($query);//ALTER TABLE validjson add test varchar(50) AS id
+    //$query = "SELECT JSON_VALUE(json,'$.name') FROM validjson where JSON_VALUE(json,'$.name') = '$search'";
+    $query = "SELECT  JSON_SEARCH(json,'all','$search') FROM validjson ";
+    $result = $conn->query($query);//ALTER TABLE validjson add test varchar(50) AS id
     //select JSON_VALUE(json,'$.name') from validjson
+    //"SELECT * FROM validjson where JSON_VALUE(json,'$.name') = '$search'"
     //SELECT * FROM validjson where 'Jhon' = JSON_VALUE(json,'$.name')
     // /ALTER TABLE validjson DROP COLUMN test
+
+    if($result->num_rows>0) {
+
+        while($row = $result->fetch_assoc()) {
+        //echo "<pre>";
+        //print_r(json_decode($row['json'])->name);
+        
+        // foreach($row as $value) {
+        //     print_r($value."<br>");
+        // }
+        foreach($row as $value) {
+        if($value!=""){
+            print_r($value);
+            $search = "SELECT JSON_VALUE(json,'$.name[2]') FROM validjson)";
+           
+            $result = $conn->query($search); print_r($result);
+            // while($row = $result->fetch_assoc()){
+            //     print_r($row);
+            //     echo "<br>";
+
+            // }
+
+            
+        }
+        }
+        }   
+
+    }
 }
 
 
