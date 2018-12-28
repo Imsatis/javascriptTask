@@ -32,14 +32,14 @@ if(isset($_REQUEST['submit'])) {
             // 'email'=>$_REQUEST['email']
         ));
     
-          echo "<pre>";
-    print_r($jsonData);
+    //       echo "<pre>";
+    // print_r($jsonData);
     
 
-    $query = "INSERT INTO 'json' ('id','jsonData') values (null,'$jsonData')";
+    //$query = "INSERT INTO 'json' ('id','jsonData') values (null,'$jsonData')";
     $test = "INSERT INTO validJson(json) VALUES ('$jsonData');";
 
-    echo $query;
+    //echo $query;
 
     $result = $conn->query($test);
 
@@ -54,7 +54,8 @@ if(isset($_REQUEST['search'])) {
     //echo "<pre>";
     //print_r($result);
 
-    if ($result->num_rows>0) {
+    if ($result->num_rows>0) {//select json_contains(json,'["Jhon","Mary","Jane","Mark"]','$.password') from validjson
+
 
         while($row = $result->fetch_assoc()) {
             //print_r($row);
@@ -156,4 +157,10 @@ if($value!=""){
 }
 }   
 
+select json_contains(json,json_extract(json,'$.name'),'$.name') from validjson
+
+SELECT json_extract(json,'$.name[0]') FROM `validjson`
+SELECT json_search(json,'all','jhon') as test FROM `validjson` where json_extract(json,test)
+
 } -->
+
