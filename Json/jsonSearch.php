@@ -49,30 +49,32 @@ if(isset($_REQUEST['search'])) {
     
     $search = $_REQUEST['search'];
 
-    $query = "SELECT  JSON_SEARCH(json,'all','$search') FROM validjson ";
+
+    $query = "SELECT JSON_SEARCH(json,'one','$search') FROM validjson ";
     $result = $conn->query($query);
-    //echo "<pre>";
+    echo "<pre>";
     //print_r($result);
 
     if ($result->num_rows>0) {//select json_contains(json,'["Jhon","Mary","Jane","Mark"]','$.password') from validjson
 
 
         while($row = $result->fetch_assoc()) {
-            //print_r($row);
+            //print_r($row);echo "<br>";
             foreach($row as $value) {
-                //echo $value;
+               // echo $value;
                 if($value!="") {
                     //echo $value;
-                    //echo $test;
+                    
                     
                      $searchQuery = "SELECT JSON_VALUE(json,$value) FROM validjson where JSON_VALUE(json,$value) = '$search'";//SELECT * FROM validjson JSON_VALUE(json,$value) = '$search'
                      //echo $searchQuery."<br>";
                      $data = $conn->query($searchQuery);
-                    //print_r($result);
+                    print_r($data);
                      if($data->num_rows>0){
                          
                         
                         while($row1 = $data->fetch_assoc()) {
+                            print_r($row1);
                             foreach($row1 as $item) {
                                 echo $item.'<br>';
                             }
