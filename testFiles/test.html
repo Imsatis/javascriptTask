@@ -1,0 +1,45 @@
+<div id="test">hellow</div>
+
+<script>
+
+
+  let obj = {
+    name:'jhon',
+    surname:'doe',
+    age:'25'
+  }
+  let arr = [1,2,3];
+  arr.name = 'jhon';
+  arr[3] = 10;
+  arr['surname'] = 'doe';
+  console.log(arr);
+
+  let object = {};
+
+  if(1){
+    console.log();
+  }
+  
+
+  for(const key in obj){
+    //var chk = key;
+    const x=1;
+    //key=12;
+    console.log(key in obj);
+    
+    //break;
+  }
+  const a = 1;
+  //a=12;
+  
+
+function user(){this.name='jhon';this.surname='doe'};
+var test = new user()
+//console.log(test)
+
+  document.getElementById("test").addEventListener("click", function(event) {
+    // display the current click count inside the clicked div
+    event.target.textContent = "click count: " + event.detail;
+    //console.log(event);
+  }, false);
+</script>

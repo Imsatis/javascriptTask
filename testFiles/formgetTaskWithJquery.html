@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Formget Task With Jquery</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+       
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <ul>
+                    <li><button id="heading">Heading</button></li>
+                    <li><button id="paragraph">Paragraph</button></li>
+                    <li><button id="input">Input</button></li>
+                </ul>
+            </div>
+            <div class="col-md-10">
+
+                <div class='items'>
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            let hCount = 1, pCount = 1, iCount = 1;
+
+            $('#heading').click(function () { create("<h1></h1>", 'Heading ' + hCount, '.items', this) });
+            $('#paragraph').click(function () { create("<p></p>", '<b>This is a simple Paragraph </b>' + pCount, '.items', this) });
+            $('#input').click(function () { create("<input type='text' placeholder='name " + iCount + "'/>", '', '.items', this) });
+
+
+            function create(element, inner, parent, clicked) {
+
+                let id = idGenrator();
+
+                let div = $('<div></div>').attr('id', id);
+
+                var child = $(element).html(inner);
+                $(div).append(child)
+
+                var delbutton = $('<button></button>').attr('id', id).text('Delete').click(function () { removeElement(id) });
+                $(div).append(delbutton);
+                $(parent).append(div.css({ "border": "2px solid black", "margin-top": "20px" }));
+
+                if (clicked.id == 'heading') hCount++;
+
+                if (clicked.id == 'paragraph') pCount++;
+
+                if (clicked.id == 'input') iCount++;
+            }
+
+            function removeElement(id) {
+                $("#" + id).remove();
+            }
+
+            function idGenrator() {
+
+                let uniqId = new Date;
+                //console.log(uniqId.getMilliseconds())
+                return Math.floor(Math.random() * Number(uniqId.getMilliseconds()));
+
+            }
+
+
+        });
+
+    </script>
+
+</body>
+
+</html>

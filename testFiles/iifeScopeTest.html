@@ -1,0 +1,52 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <h1  id = '1'>click me</h1>
+    <h1  >click me</h1>
+    <h1  >click me</h1>
+    <script>//debugger;//onclick= "hellow(event)"
+
+        
+            //In this we are calling hellow function but it is not accessable form outside the Anonymous function 
+            //document.getElementById('1').addEventListener('click',function() { hellow(this) });
+            
+            (function() {
+
+            function hellow(e) {
+                
+                e.innerHTML = 'hellow';
+                console.log(e); 
+                
+            }//*Conclusion the Scope of this function is inside the Anonymous IIFE(Self Invoke)function,
+                
+        
+        }) ();//outside Anonymous function we can't access the hellow Function.......*/Because We can't access inside the function 
+        
+
+            // document.getElementById('1').addEventListener('click',function() {hell(this)});
+
+             //function hell(show) {
+
+               // console.log(show);
+             //} 
+
+
+             $('#1').click(function() {
+                var element = $("#1");
+                 console.log(element[0]);
+             });
+
+
+        </script>
+</body>
+</html>
